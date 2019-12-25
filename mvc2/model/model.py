@@ -17,10 +17,10 @@ class User:
 
 def register(name,email,password):
     user = User(name,email,password)
-    query = f"insert into users (username, email, password) values (%s,%s,%s)"
+    query = f"insert into users (username, email, password) values (%s,%s,%s)" 
     result = cursor.execute(query, (user.name, user.email, user.password))
     if result == 1:
-        return "Registration successful"
+        return user
     else:
         return "Unable to register at this moment!"
 
@@ -31,6 +31,6 @@ def login(email,password):
         data = cursor.fetchone()
         # print(data)
         user = User(data[0],data[1],data[2])
-        return "Welcome " + user.name
+        return user
     else:
         return "Invalid credentials"
