@@ -12,5 +12,20 @@ firebaseConfig = {
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 db = firebase.database()
-users = db.child("users/1/posts/1/post").get()
-print(users.val())
+# users = db.child("users/1/posts/1/post").get()
+# print(users.val())
+
+data = {
+    "name" : "Shyam",
+    "email" : "shyam@gmail.com",
+    "password" : "shyam1234",
+    "posts" : {
+        "1" : {
+            "post" : "This is Shyam's first post",
+            "date" : "27-12-19"
+        }
+    }
+}
+
+# db.child('users').push(data)
+db.child('users').child('2').set(data)
