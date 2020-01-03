@@ -129,5 +129,38 @@ products = [{
             "discount_percentage" : 42,
             "product_rating" : 4.1,
             "product_category" : "home-kitchen-big"
+        },
+        {
+            "product_id" : 13,
+            "product_brand" : "Fastrack",
+            "product_name" : "68007PP01 Trendies Analog Watch - For Women",
+            "product_image" : "https://rukminim1.flixcart.com/image/880/1056/jiklh8w0/watch/x/g/4/68007pp01-fastrack-original-imaf6cffjkmtzahb.jpeg?q=50",
+            "product_price" : 1271,
+            "product_mrp" : 1695,
+            "discount_percentage" : 25,
+            "product_rating" : 4.3,
+            "product_category" : "watches"
+        },
+        {
+            "product_id" : 14,
+            "product_brand" : "Sonata",
+            "product_name" : "77106SM04 Analog Watch - For Men",
+            "product_image" : "https://rukminim1.flixcart.com/image/880/1056/k0o69ow0/watch/f/g/c/77106sm04-sonata-original-imafkf7uhcfvndcv.jpeg?q=50",
+            "product_price" : 999,
+            "product_mrp" : 1249,
+            "discount_percentage" : 20,
+            "product_rating" : 4.4,
+            "product_category" : "watches"
+        },
+        {
+            "product_id" : 15,
+            "product_brand" : "Daniel Klein",
+            "product_name" : "DK11421-7 Analog Watch - For Women",
+            "product_image" : "https://rukminim1.flixcart.com/image/880/1056/j44h7680/watch/g/d/d/dk11421-7-daniel-klein-original-imaev3qfcd8uf8na.jpeg?q=50",
+            "product_price" : 1599,
+            "product_mrp" : 3750,
+            "discount_percentage" : 57,
+            "product_rating" : 4.4,
+            "product_category" : "watches"
         }
     ]
