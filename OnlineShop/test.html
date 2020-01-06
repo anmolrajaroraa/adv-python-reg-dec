@@ -11,33 +11,30 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">OnlineShop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Login & Signup <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
+              <a class="nav-link" href="#">My Cart</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
+                Categories
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Men</a>
+                <a class="dropdown-item" href="#">Women</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Electronics</a>
               </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -50,7 +47,19 @@
         <h1 class="text-center">Products</h1>
         <hr>
 
-      <div class="card" style="width: 18rem;">
+      <div class="row">
+      <div class="col-xl-4">
+      <div class="card" style="width: 18rem; margin-bottom: 25px;">
+        <img src="https://rukminim1.flixcart.com/image/533/640/jiklh8w0/watch/x/g/4/68007pp01-fastrack-original-imaf6cffjkmtzahb.jpeg?q=50" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Products</h5>
+          <p class="card-text">A very good-looking watch</p>
+          <a href="#" class="btn btn-primary">View Product</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4">
+      <div class="card" style="width: 18rem;margin-bottom: 25px;">
         <img src="https://rukminim1.flixcart.com/image/533/640/jiklh8w0/watch/x/g/4/68007pp01-fastrack-original-imaf6cffjkmtzahb.jpeg?q=50" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -58,8 +67,9 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
-
-      <div class="card" style="width: 18rem;">
+      </div>
+      <div class="col-xl-4">
+      <div class="card" style="width: 18rem;margin-bottom: 25px;">
         <img src="https://rukminim1.flixcart.com/image/533/640/jiklh8w0/watch/x/g/4/68007pp01-fastrack-original-imaf6cffjkmtzahb.jpeg?q=50" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -67,8 +77,10 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
+      </div>
 
-      <div class="card" style="width: 18rem;">
+      <div class="col-xl-4">
+      <div class="card" style="width: 18rem;margin-bottom: 25px;">
         <img src="https://rukminim1.flixcart.com/image/533/640/jiklh8w0/watch/x/g/4/68007pp01-fastrack-original-imaf6cffjkmtzahb.jpeg?q=50" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -76,8 +88,10 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
+    </div>
 
-      <div class="card" style="width: 18rem;">
+    <div class="col-xl-4">
+      <div class="card" style="width: 18rem;margin-bottom: 25px;">
         <img src="https://rukminim1.flixcart.com/image/533/640/jiklh8w0/watch/x/g/4/68007pp01-fastrack-original-imaf6cffjkmtzahb.jpeg?q=50" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -85,14 +99,8 @@
           <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
       </div>
+      </div>
 
-      <div class="card" style="width: 18rem;">
-        <img src="https://rukminim1.flixcart.com/image/533/640/jiklh8w0/watch/x/g/4/68007pp01-fastrack-original-imaf6cffjkmtzahb.jpeg?q=50" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
       </div>
     </div>
 </body>
