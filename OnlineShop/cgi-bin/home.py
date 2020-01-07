@@ -180,6 +180,7 @@ print('''
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -223,8 +224,10 @@ print('''
 for product in products:
     print(f'''      
       <div class="col-xl-4">
-      <div class="card" style="width: 18rem; margin-bottom: 25px;">
-        <img src="{product['product_image']}" class="card-img-top" alt="...">
+      <div class="card" style="width: 18rem; height:35rem; margin-bottom: 25px;">
+        <div class="{product['product_category']}-parent">
+          <img src="{product['product_image']}" class="card-img-top {product['product_category']}" alt="...">
+        </div>
         <div class="card-body">
           <h5 class="card-title">{product['product_brand']} {product['product_name']}</h5>
           <p class="card-text">&#8377;{product['product_price']}</p>
