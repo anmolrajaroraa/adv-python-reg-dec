@@ -11,7 +11,7 @@ for category in DB.searchIntents.keys():
     if query in DB.searchIntents[category]:
         query = category
 
-base.header()
+base.header(query.upper())
 
 # print(query)
 

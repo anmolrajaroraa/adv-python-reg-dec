@@ -3,7 +3,7 @@ print("Content-type: text/html\r\n\r\n")
 
 import DB, base
 
-base.header()
+base.header("Deals of the Day")
 
 for product in DB.products:
     base.createProduct(product)

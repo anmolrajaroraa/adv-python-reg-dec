@@ -1,5 +1,5 @@
-def header():
-    print('''
+def header(heading):
+    print(f'''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +15,7 @@ def header():
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">OnlineShop</a>
+        <a class="navbar-brand" href="home.py">OnlineShop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,14 +47,14 @@ def header():
         </div>
       </nav>
       <div class="container">
-        <h1 class="text-center">Products</h1>
+        <h1 class="text-center">{heading}</h1>
         <hr>
 
       <div class="row">''')
 
 def createProduct(product):
     print(f'''      
-      <div class="col-xl-4">
+      <div class="col-xl-4 col-md-6">
       <div class="card" style="width: 18rem; height:35rem; margin-bottom: 25px;">
         <div class="{product['product_category']}-parent">
           <img src="{product['product_image']}" class="card-img-top {product['product_category']}" alt="...">
@@ -62,11 +62,30 @@ def createProduct(product):
         <div class="card-body">
           <h5 class="card-title">{product['product_brand']} {product['product_name']}</h5>
           <p class="card-text">&#8377;{product['product_price']}</p>
-          <a href="#" class="btn btn-primary">View Product</a>
+          <a href="view_product.py?pid={product['product_id']}" class="btn btn-primary">View Product</a>
         </div>
       </div>
     </div>
     ''')
+
+def createHorizontalProduct(product):
+  print(f'''
+    <div class="card mb-3" style="width:100%;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{product['product_image']}" class="card-img" id="horizontalProduct"  alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{product["product_brand"]} {product['product_name']}</h5>
+        <p class="card-text">&#8377;{product['product_price']}</p>
+        <p class="card-text"><small class="text-muted">{product['discount_percentage']}% off</small></p>
+        <a href="cart.py?pid={product['product_id']}" class="btn btn-primary">Add To Cart</a>
+      </div>
+    </div>
+  </div>
+</div>
+  ''')
 
 def footer():
     print('''</div>
