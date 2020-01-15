@@ -45,12 +45,19 @@
   </nav>
   <div>
       <div class="row w-100" id="banner">
-          <div class="col-md-4 offset-md-7" >
+          <div class="col-md-4 offset-md-7" id="signup-form">
               <h1>Create an account</h1>
               <h5>It's quick and easy.</h5>
               <form>
-                <div class="form-group">
-                    <input type="text" name="firstname" class="form-control" placeholder="First name">
+                <div class="form-group" style="margin-bottom: 0;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" name="firstname" class="form-control" placeholder="First name">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="lastname" class="form-control" placeholder="Last name">
+                        </div>
+                    </div>
                   </div>
                   <div class="form-group">
                     <input type="email" name="email" class="form-control" placeholder="Email address">
@@ -59,14 +66,14 @@
                     <input type="password" name="password" class="form-control" placeholder="New password">
                   </div>
                   <div class="form-group">
-                    <label>Birthday</label>
-                    <input type="date" name="birthday" class="form-control" placeholder="Email address" max="2020-01-14">
+                    <label style="padding-left: 10px;">Birthday</label>
+                    <input type="date" name="birthday" class="form-control" max="2019-12-31">
                   </div>
                   <div class="form-group">
                     <input type="radio" name="gender" id="male">
                     <label for="male">Male</label>
                     <input type="radio" name="gender" id="female">
-                    <label for="cutsom">Female</label>
+                    <label for="female">Female</label>
                     <input type="radio" name="gender" id="custom">
                     <label for="custom">Custom</label>
                   </div>

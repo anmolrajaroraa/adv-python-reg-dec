@@ -1,8 +1,26 @@
-#banner{
+body{
     background-image: url('https://plsadaptive.s3.amazonaws.com/eco/images/channel_content/images/digital_hr_man_with_social_network_contacts_hologram_over_grey_background__man_with_social_network_contacts_hologram.jpg');
-    height: 1000px;
+    min-height: 100vh;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+#banner{
     margin: 0; 
+}
+#banner input{
+    margin-bottom: 25px;
+}
+h1{
+    margin: 25px 0;
+}
+h5{
+    margin-bottom: 25px;
+}
+input[type=radio]{ 
+    margin-left: 25px;
+    margin-right: 10px;
+}
+#signup-form{
+    /* background-color: rgba(0,0,0,0.5); */
 }
