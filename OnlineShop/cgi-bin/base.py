@@ -26,17 +26,17 @@ def header(heading):
               <a class="nav-link" href="#">Login & Signup <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">My Cart</a>
+              <a class="nav-link" href="cart.py">My Cart</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Categories
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Men</a>
-                <a class="dropdown-item" href="#">Women</a>
+                <a class="dropdown-item" href="home.py?category=men's fashion">Men</a>
+                <a class="dropdown-item" href="home.py?category=women's fashion">Women</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Electronics</a>
+                <a class="dropdown-item" href="home.py?category=electronics">Electronics</a>
               </div>
             </li>
           </ul>
@@ -56,8 +56,8 @@ def createProduct(product):
     print(f'''      
       <div class="col-xl-4 col-md-6">
       <div class="card" style="width: 18rem; height:35rem; margin-bottom: 25px;">
-        <div class="{product['product_category']}-parent">
-          <img src="{product['product_image']}" class="card-img-top {product['product_category']}" alt="...">
+        <div class="{product['product_sub_category']}-parent">
+          <img src="{product['product_image']}" class="card-img-top {product['product_sub_category']}" alt="...">
         </div>
         <div class="card-body">
           <h5 class="card-title">{product['product_brand']} {product['product_name']}</h5>

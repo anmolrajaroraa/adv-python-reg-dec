@@ -16,5 +16,5 @@ base.header(query.upper())
 # print(query)
 
 for product in DB.products:
-    if query in product['product_category'] or query in product['product_brand'].lower() or query in product['product_name'].lower():
+    if query in product['product_sub_category'] or query in product['product_brand'].lower() or query in product['product_name'].lower() or query == product["product_category"]:
         base.createProduct(product)

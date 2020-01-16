@@ -4,7 +4,10 @@ searchIntents = {
     "refrigerators" : ['fridge', "double door fridge", "single door fridge"],
     "washing-machine" : ["machine", "washing", "washing machine"],
     "home-kitchen" : ["home", "home appliances", "kitchen electronics", "kitchen", "home kitchen"],
-    "watches" : ["clock", "smartwatch", "wrist watch"]
+    "watches" : ["clock", "smartwatch", "wrist watch"],
+    "men's fashion" : ["men", "male", "men fashion", "boys"],
+    "women's fashion" : ["women", "woman", "females", "fashion", "women fashion"],
+    "electronics" : ["electronic", "devices", "appliances"]
 }
 
 products = [{
@@ -16,7 +19,8 @@ products = [{
             "product_mrp" : 7999,
             "discount_percentage" : 18,
             "product_rating" : 4.4,
-            "product_category" : "mobiles"
+            "product_sub_category" : "mobiles",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 2,
@@ -27,7 +31,8 @@ products = [{
             "product_mrp" : 16999,
             "discount_percentage" : 5,
             "product_rating" : 4.5,
-            "product_category" : "mobiles"
+            "product_sub_category" : "mobiles",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 3,
@@ -38,7 +43,8 @@ products = [{
             "product_mrp" : 10999,
             "discount_percentage" : 18,
             "product_rating" : 4.5,
-            "product_category" : "mobiles"
+            "product_sub_category" : "mobiles",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 4,
@@ -49,7 +55,8 @@ products = [{
             "product_mrp" : 14999,
             "discount_percentage" : 6,
             "product_rating" : 4.5,
-            "product_category" : "mobiles"
+            "product_sub_category" : "mobiles",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 5,
@@ -60,7 +67,8 @@ products = [{
             "product_mrp" : 70990,
             "discount_percentage" : 57,
             "product_rating" : 4.4,
-            "product_category" : "televisions"
+            "product_sub_category" : "televisions",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 6,
@@ -71,7 +79,8 @@ products = [{
             "product_mrp" : 36000,
             "discount_percentage" : 37,
             "product_rating" : 4.4,
-            "product_category" : "televisions"
+            "product_sub_category" : "televisions",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 7,
@@ -82,7 +91,8 @@ products = [{
             "product_mrp" : 20400,
             "discount_percentage" : 22,
             "product_rating" : 4.5,
-            "product_category" : "refrigerators"
+            "product_sub_category" : "refrigerators",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 8,
@@ -93,7 +103,8 @@ products = [{
             "product_mrp" : 19890,
             "discount_percentage" : 23,
             "product_rating" : 4.4,
-            "product_category" : "washing-machines"
+            "product_sub_category" : "washing-machines",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 9,
@@ -104,7 +115,8 @@ products = [{
             "product_mrp" : 5499,
             "discount_percentage" : 48,
             "product_rating" : 4.1,
-            "product_category" : "home-kitchen"
+            "product_sub_category" : "home-kitchen",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 10,
@@ -115,7 +127,8 @@ products = [{
             "product_mrp" : 4995,
             "discount_percentage" : 43,
             "product_rating" : 4.3,
-            "product_category" : "home-kitchen"
+            "product_sub_category" : "home-kitchen",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 11,
@@ -126,7 +139,8 @@ products = [{
             "product_mrp" : 3899,
             "discount_percentage" : 48,
             "product_rating" : 4.2,
-            "product_category" : "home-kitchen-big"
+            "product_sub_category" : "home-kitchen-big",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 12,
@@ -137,7 +151,8 @@ products = [{
             "product_mrp" : 3199,
             "discount_percentage" : 42,
             "product_rating" : 4.1,
-            "product_category" : "home-kitchen-big"
+            "product_sub_category" : "home-kitchen-big",
+            "product_category" : "electronics"
         },
         {
             "product_id" : 13,
@@ -148,7 +163,8 @@ products = [{
             "product_mrp" : 1695,
             "discount_percentage" : 25,
             "product_rating" : 4.3,
-            "product_category" : "watches"
+            "product_sub_category" : "watches",
+            "product_category" : "women's fashion"
         },
         {
             "product_id" : 14,
@@ -159,7 +175,8 @@ products = [{
             "product_mrp" : 1249,
             "discount_percentage" : 20,
             "product_rating" : 4.4,
-            "product_category" : "watches"
+            "product_sub_category" : "watches",
+            "product_category" : "men's fashion"
         },
         {
             "product_id" : 15,
@@ -170,6 +187,7 @@ products = [{
             "product_mrp" : 3750,
             "discount_percentage" : 57,
             "product_rating" : 4.4,
-            "product_category" : "watches"
+            "product_sub_category" : "watches",
+            "product_category" : "women's fashion"
         }
     ]
