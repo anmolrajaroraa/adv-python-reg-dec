@@ -1,6 +1,6 @@
 import pymysql
 
-connection = pymysql.connect(host="localhost", user="root", database="socialhub", port="3306", autocommit=True)
+connection = pymysql.connect(host="localhost", user="root", database="socialhub", port=3306, autocommit=True)
 
 cursor = connection.cursor()
 

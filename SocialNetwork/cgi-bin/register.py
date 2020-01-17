@@ -1,7 +1,7 @@
 #!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
-print("Content-type: text/html\r\n\r\n")
+# print("Content-type: text/html\r\n\r\n")
 
-import cgi, model
+import cgi, model, view, base
 
 fieldStorage = cgi.FieldStorage()
 firstname = fieldStorage.getvalue("firstname")
@@ -21,3 +21,5 @@ gender = fieldStorage.getvalue("gender")
 # ''')
 
 result = model.register(firstname, lastname, email, password, birthday, gender)
+if result == 1:
+   base.header(firstname)

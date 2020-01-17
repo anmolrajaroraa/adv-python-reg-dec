@@ -1,0 +1,19 @@
+nav a{
+    color: white;
+}
+nav a:hover{
+    color:#F8C146;
+}
+.custom-dropdown{
+    background-color: #3F9BAF;
+}
+.custom-dropdown a{
+    color:white;
+}
+.custom-dropdown div{
+    border: 1px solid #F8C146;
+}
+.custom-dropdown a:hover{
+    background-color: #F8C146;
+    color: white;
+}
