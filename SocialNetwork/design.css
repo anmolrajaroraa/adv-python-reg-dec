@@ -1,6 +1,6 @@
 nav a{
     color: white;
-}
+} 
 nav a:hover{
     color:#F8C146;
 }
@@ -16,4 +16,7 @@ nav a:hover{
 .custom-dropdown a:hover{
     background-color: #F8C146;
     color: white;
+}
+#error-msg{
+    padding-top: 15px;
 }

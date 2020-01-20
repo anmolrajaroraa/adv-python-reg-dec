@@ -5,7 +5,7 @@ body{
     background-position: center;
     background-size: cover;
 }
-#banner{
+#banner{ 
     margin: 0; 
 }
 #banner input{
@@ -21,7 +21,3 @@ input[type=radio]{
     margin-left: 25px;
     margin-right: 10px;
 }
-#signup-form{
-    /* background-color: rgba(0,0,0,0.5); */
-}
-#signupBtn

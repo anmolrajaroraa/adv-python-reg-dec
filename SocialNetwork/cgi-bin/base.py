@@ -1,8 +1,8 @@
 #!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
 # print("Content-type: text/html\r\n\r\n")
 
-def header(firstname):
-    print(f'''
+def header():
+    print('''
         <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +17,10 @@ def header(firstname):
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="../design.css">
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg" style="background-color: #009baf; color: white;">
+<body>''')
+
+def navbar(firstname):
+  print(f'''  <nav class="navbar navbar-expand-lg" style="background-color: #009baf; color: white;">
         <a class="navbar-brand" href="#">
             <img src="https://socialhub.io/wp-content/uploads/2016/06/SocialHub-Logo-Color-RGB.png" width="200" height="30" class="d-inline-block align-top" alt="">
           </a>
@@ -54,6 +56,47 @@ def header(firstname):
           </form>
         </div>
       </nav>
-</body>
-</html>
     ''')
+
+def error(email, errorMsg):
+  print(f'''
+    <nav class="navbar navbar-light" style="background-color: #009baf;padding-bottom: 0;">
+    <div class="row w-100">
+        <div class="col-md-3">
+            <a class="navbar-brand" href="#" style="margin-top: 20px;">
+                <img src="https://socialhub.io/wp-content/uploads/2016/06/SocialHub-Logo-Color-RGB.png" width="200" height="30" class="d-inline-block align-top" alt="">
+              </a>
+        </div>
+        <div class="col-md-5 offset-md-4">
+            <form style="color: white;" action="login.py" method="POST">
+                <div class="row w-100">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="emailBox">Email</label>
+                            <input type="email" name="email" id="emailBox" class="form-control" value="{email}">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label for="passwordBox">Password</label>
+                            <input type="password" name="password" id="passwordBox" class="form-control">
+                            <a style="font-size: small;">Forgot password ?</a >
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-outline-warning" style="margin-top: 30px;">Log In</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </nav>
+  <h1 class="text-center" id="error-msg">{errorMsg}</h1>
+  <hr>
+  ''')
+
+def footer():
+  print('''
+    </body>
+    </html>
+  ''')

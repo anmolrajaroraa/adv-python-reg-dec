@@ -1,7 +1,7 @@
 #!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
 # print("Content-type: text/html\r\n\r\n")
 
-import cgi, model, view, base
+import cgi, model, base, pymysql
 
 fieldStorage = cgi.FieldStorage()
 firstname = fieldStorage.getvalue("firstname")
@@ -19,7 +19,12 @@ gender = fieldStorage.getvalue("gender")
 # Birthday : {birthday}
 # Gender : {gender}
 # ''')
-
-result = model.register(firstname, lastname, email, password, birthday, gender)
-if result == 1:
-   base.header(firstname)
+try:
+    base.header()
+    result = model.register(firstname, lastname, email, password, birthday, gender)
+    if result == 1:
+        base.navbar(firstname)
+except pymysql.IntegrityError:
+    base.error(email, "Email Id Already Exists !")
+finally:
+    base.footer()

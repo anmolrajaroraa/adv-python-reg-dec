@@ -18,3 +18,12 @@ def register(firstname, lastname, email, password, birthday, gender):
     query = "insert into users values (%s,%s,%s,%s,%s,%s)"
     result = cursor.execute(query, (userObject.firstname, userObject.lastname, userObject.email, userObject.password, userObject.birthday, userObject.gender))
     return result
+
+def login(email, password):
+    query = "select * from users where email = %s and password = %s"
+    result = cursor.execute(query, (email, password))
+    if result == 1:
+        data = cursor.fetchone()
+        userObject = User(data[0], data[1], data[2], None, data[4], data[5])
+        return userObject
+
