@@ -15,7 +15,7 @@ password = fieldStorage.getvalue("password")
 base.header()
 result = model.login(email, password)
 if isinstance(result, model.User):
-    base.navbar(result.firstname)
+    base.navbar(result.firstname, result.email)
 else:
     base.error(email, "Invalid Credentials !")
 base.footer()
