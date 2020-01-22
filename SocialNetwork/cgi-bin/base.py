@@ -95,6 +95,54 @@ def error(email, errorMsg):
   <hr>
   ''')
 
+def editProfileForm():
+  print('''
+          <div class="container">
+        <form action="updateProfile.py" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label class="mt-5" for="profile_pic">Profile Pic</label class="mt-5">
+              <br>
+            <input type="file" name="profile_pic" id="profile_pic">
+          </div>
+          <div class="form-group">
+            <label for="overview">Bio</label>
+            <textarea class="form-control mb-2" name="bio" id="overview" rows="5"></textarea>
+            <input type="text" class="form-control" placeholder="Nickname" name="nickname">
+          </div>
+          <div class="form-group">
+            <label for="work_education">Work & Education</label>
+            <input class="form-control mb-2" type="text" id="work_education" placeholder="Workplace" name="workplace">
+            <input class="form-control mb-2" type="text" placeholder="Professional Skills" name="skills">
+            <input class="form-control mb-2" type="text" placeholder="University" name="university">
+            <input class="form-control" type="text" placeholder="High School" name="school">
+          </div>
+          <div class="form-group">
+            <label for="places">Places you've lived</label>
+            <input type="text" class="form-control mb-2" id="places" placeholder="Current City" name="current_city">
+            <input type="text" class="form-control mb-2" placeholder="Home Town" name="hometown">
+            <input type="text" class="form-control" placeholder="Other Places Lived" name="other_places">
+          </div>
+          <div class="form-group">
+            <label for="contact">Contact and basic info</label>
+            <input type="text" class="form-control mb-2" name="contact" placeholder="Contact Information" id="contact">
+            <select name="relationship_status" class="form-control">
+              <option value="">Relationship Status</option>
+              <option value="single">Single</option>
+              <option value="in relationship">In A Relationship</option>
+              <option value="engaged">Engaged</option>
+              <option value="married">Married</option>
+              <option value="complicated">It's Complicated</option>
+              <option value="divorced">Divorced</option>
+              <option value="widowed">Widowed</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button style="float: right;" type="submit" class="btn btn-primary mb-5">Save Changes</button>
+          </div>
+        </form>
+      </div>
+  ''')
+
 def footer():
   print('''
     </body>
