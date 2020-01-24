@@ -8,5 +8,5 @@ email = fieldStorage.getvalue("email")
 
 base.header()
 base.navbar(firstname,email)
-base.editProfileForm()
+base.editProfileForm(firstname,email)
 base.footer()

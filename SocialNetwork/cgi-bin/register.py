@@ -23,7 +23,9 @@ try:
     base.header()
     result = model.register(firstname, lastname, email, password, birthday, gender)
     if result == 1:
-        base.navbar(firstname)
+        profileCreated = model.createProfile(email)
+        if profileCreated:
+            base.navbar(firstname, email)
 except pymysql.IntegrityError:
     base.error(email, "Email Id Already Exists !")
 finally:

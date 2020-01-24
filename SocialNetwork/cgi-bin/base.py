@@ -95,14 +95,14 @@ def error(email, errorMsg):
   <hr>
   ''')
 
-def editProfileForm():
-  print('''
+def editProfileForm(firstname,email):
+  print(f'''
           <div class="container">
         <form action="updateProfile.py" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="firstname" value="{firstname}">
+          <input type="hidden" name="email" value="{email}">
           <div class="form-group">
-            <label class="mt-5" for="profile_pic">Profile Pic</label class="mt-5">
-              <br>
-            <input type="file" name="profile_pic" id="profile_pic">
+            <button class="btn btn-primary mt-5">Change Profile Pic</button>
           </div>
           <div class="form-group">
             <label for="overview">Bio</label>
