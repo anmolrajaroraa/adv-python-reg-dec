@@ -14,22 +14,23 @@ class User:
         self.gender = gender
 
 class ProfileDetails:
-    def __init__(self, *args):
-        args = list(args)
-        for i in range(len(args)):
-            if args[i] == None:
-                args[i] = ''
-        self.bio = args[0]
-        self.nickname = args[1]
-        self.workplace = args[2]
-        self.skills = args[3]
-        self.university = args[4]
-        self.school = args[5]
-        self.current_city = args[6]
-        self.hometown = args[7]
-        self.other_places = args[8]
-        self.contact = args[9]
-        self.relationship_status = args[10]
+    def __init__(self, data):
+        data = list(data)
+        for i in range(len(data)):
+            if data[i] == None:
+                data[i] = ''
+        self.profile_pic = data[1]
+        self.bio = data[2]
+        self.nickname = data[3]
+        self.workplace = data[4]
+        self.skills = data[5]
+        self.university = data[6]
+        self.school = data[7]
+        self.current_city = data[8]
+        self.hometown = data[9]
+        self.other_places = data[10]
+        self.contact = data[11]
+        self.relationship_status = data[12]
 
 def register(firstname, lastname, email, password, birthday, gender):
     userObject = User(firstname, lastname, email, password, birthday, gender)
@@ -51,17 +52,18 @@ def login(email, password):
         return userObject
 
 def updateProfile(email, bio, nickname, workplace, skills, university, school, current_city, hometown, other_places, contact, relationship_status):
-    profileObject = ProfileDetails(bio, nickname, workplace, skills, university, school, current_city, hometown, other_places, contact, relationship_status)
-    # if profile_pic.filename:
-    #     image_data = profile_pic.file.read()
-    #     open(f'images/{profile_pic.filename}', 'wb').write(image_data)
+    profileObject = ProfileDetails((email, None, bio, nickname, workplace, skills, university, school, current_city, hometown, other_places, contact, relationship_status))
     query = "update profile_details set bio = %s, nickname = %s, workplace = %s, skills = %s, university = %s, school = %s, current_city = %s, hometown = %s, other_places = %s, contact = %s, relationship_status = %s where email = %s"
-    result = cursor.execute(query, (profileObject.bio, profileObject.nickname, profileObject.workplace, profileObject.skills, profileObject.university, profileObject.school, profileObject.current_city, profileObject.hometown, profileObject.other_places, profileObject.contact, profileObject.relationship_status, email))
-    return result
+    cursor.execute(query, (profileObject.bio, profileObject.nickname, profileObject.workplace, profileObject.skills, profileObject.university, profileObject.school, profileObject.current_city, profileObject.hometown, profileObject.other_places, profileObject.contact, profileObject.relationship_status, email))
+
+def updateProfilePic(email, profile_pic):
+    open(f'images/{profile_pic.filename}', 'wb').write(profile_pic.file.read())
+    query = "update profile_details set profile_pic = %s where email = %s"
+    cursor.execute(query, (profile_pic.filename, email))
 
 def getProfileDetails(email):
     query = "select * from profile_details where email = %s"
     result = cursor.execute(query, (email))
     if result == 1:
         data = cursor.fetchone()
-        return ProfileDetails(data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12])
+        return ProfileDetails(data)

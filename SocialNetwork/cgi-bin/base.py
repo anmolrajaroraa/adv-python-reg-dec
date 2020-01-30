@@ -98,8 +98,9 @@ def error(email, errorMsg):
 def editProfileForm(firstname,email, profileObject):
   print(f'''
           <div class="container">
-          <div class="form-group">
-            <button class="btn btn-primary mt-5" data-toggle="modal" data-target="#exampleModal">Change Profile Pic</button>
+          <div class="form-group mt-5">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Change Profile Pic</button>
+            <span>{profileObject.profile_pic}</span>
           </div>
         <form action="updateProfile.py" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="firstname" value="{firstname}">
@@ -170,7 +171,7 @@ def profilePicModal(firstname,email):
         <input type="hidden" name="firstname" value="{firstname}">
           <input type="hidden" name="email" value="{email}">
         <div class="form-group">
-            <input type="file" name="profile_pic" id="profile_pic">
+            <input type="file" name="profile_pic" id="profile_pic" required> 
           </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
