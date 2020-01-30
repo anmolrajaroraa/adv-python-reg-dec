@@ -95,37 +95,37 @@ def error(email, errorMsg):
   <hr>
   ''')
 
-def editProfileForm(firstname,email):
+def editProfileForm(firstname,email, profileObject):
   print(f'''
           <div class="container">
+          <div class="form-group">
+            <button class="btn btn-primary mt-5" data-toggle="modal" data-target="#exampleModal">Change Profile Pic</button>
+          </div>
         <form action="updateProfile.py" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="firstname" value="{firstname}">
           <input type="hidden" name="email" value="{email}">
           <div class="form-group">
-            <button class="btn btn-primary mt-5">Change Profile Pic</button>
-          </div>
-          <div class="form-group">
             <label for="overview">Bio</label>
-            <textarea class="form-control mb-2" name="bio" id="overview" rows="5"></textarea>
-            <input type="text" class="form-control" placeholder="Nickname" name="nickname">
+            <textarea class="form-control mb-2" name="bio" id="overview" rows="5">{profileObject.bio}</textarea>
+            <input type="text" class="form-control" placeholder="Nickname" name="nickname" value={profileObject.nickname}>
           </div>
           <div class="form-group">
             <label for="work_education">Work & Education</label>
-            <input class="form-control mb-2" type="text" id="work_education" placeholder="Workplace" name="workplace">
-            <input class="form-control mb-2" type="text" placeholder="Professional Skills" name="skills">
-            <input class="form-control mb-2" type="text" placeholder="University" name="university">
-            <input class="form-control" type="text" placeholder="High School" name="school">
+            <input class="form-control mb-2" type="text" id="work_education" placeholder="Workplace" name="workplace" value="{profileObject.workplace}">
+            <input class="form-control mb-2" type="text" placeholder="Professional Skills" name="skills" value="{profileObject.skills}">
+            <input class="form-control mb-2" type="text" placeholder="University" name="university" value="{profileObject.university}">
+            <input class="form-control" type="text" placeholder="High School" name="school" value="{profileObject.school}">
           </div>
           <div class="form-group">
             <label for="places">Places you've lived</label>
-            <input type="text" class="form-control mb-2" id="places" placeholder="Current City" name="current_city">
-            <input type="text" class="form-control mb-2" placeholder="Home Town" name="hometown">
-            <input type="text" class="form-control" placeholder="Other Places Lived" name="other_places">
+            <input type="text" class="form-control mb-2" id="places" placeholder="Current City" name="current_city"  value="{profileObject.current_city}">
+            <input type="text" class="form-control mb-2" placeholder="Home Town" name="hometown"  value="{profileObject.hometown}">
+            <input type="text" class="form-control" placeholder="Other Places Lived" name="other_places"  value="{profileObject.other_places}">
           </div>
           <div class="form-group">
             <label for="contact">Contact and basic info</label>
-            <input type="text" class="form-control mb-2" name="contact" placeholder="Contact Information" id="contact">
-            <select name="relationship_status" class="form-control">
+            <input type="text" class="form-control mb-2" name="contact" placeholder="Contact Information" id="contact" value="{profileObject.contact}">
+            <select id="dropdown" name="relationship_status" class="form-control" selected="{profileObject.relationship_status}">
               <option value="">Relationship Status</option>
               <option value="single">Single</option>
               <option value="in relationship">In A Relationship</option>
@@ -141,6 +141,46 @@ def editProfileForm(firstname,email):
           </div>
         </form>
       </div>
+  ''')
+
+def runScript(relationship_status):
+  print('''
+    <script>
+        options = document.getElementById("dropdown").options;
+        for(let option of options){''')
+  print("if(option.value == '" + relationship_status + "' ) { ")
+  print('''option.selected = true
+          }
+        }
+      </script>''')
+
+def profilePicModal(firstname,email):
+  print(f'''
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"   aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Profile Pic</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0">
+        <form action="updateProfile.py" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="firstname" value="{firstname}">
+          <input type="hidden" name="email" value="{email}">
+        <div class="form-group">
+            <input type="file" name="profile_pic" id="profile_pic">
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  </div>
   ''')
 
 def footer():

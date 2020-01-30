@@ -6,7 +6,7 @@ fieldStorage = cgi.FieldStorage()
 firstname = fieldStorage.getvalue('firstname')
 email = fieldStorage.getvalue('email')
 # profile_pic = fieldStorage.getvalue("profile_pic")
-profile_pic = fieldStorage['profile_pic']
+# profile_pic = fieldStorage['profile_pic'] 
 bio = fieldStorage.getvalue('bio')
 nickname = fieldStorage.getvalue('nickname')
 workplace = fieldStorage.getvalue('workplace')
@@ -23,6 +23,6 @@ base.header()
 base.navbar(firstname, email)
 # print(os.path.basename(profile_pic))
 # print(profile_pic.filename)
-model.updateProfile(email, profile_pic, bio, nickname, workplace, skills, university, school, current_city, hometown, other_places, contact, relationship_status)
+model.updateProfile(email, bio, nickname, workplace, skills, university, school, current_city, hometown, other_places, contact, relationship_status)
 
 # print(profile_pic)

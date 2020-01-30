@@ -14,18 +14,22 @@ class User:
         self.gender = gender
 
 class ProfileDetails:
-    def __init__(self, bio, nickname, workplace, skills, university, school, current_city, hometown, other_places, contact, relationship_status):
-        self.bio = bio
-        self.nickname = nickname
-        self.workplace = workplace
-        self.skills = skills
-        self.university = university
-        self.school = school
-        self.current_city = current_city
-        self.hometown = hometown
-        self.other_places = other_places
-        self.contact = contact
-        self.relationship_status = relationship_status
+    def __init__(self, *args):
+        args = list(args)
+        for i in range(len(args)):
+            if args[i] == None:
+                args[i] = ''
+        self.bio = args[0]
+        self.nickname = args[1]
+        self.workplace = args[2]
+        self.skills = args[3]
+        self.university = args[4]
+        self.school = args[5]
+        self.current_city = args[6]
+        self.hometown = args[7]
+        self.other_places = args[8]
+        self.contact = args[9]
+        self.relationship_status = args[10]
 
 def register(firstname, lastname, email, password, birthday, gender):
     userObject = User(firstname, lastname, email, password, birthday, gender)
@@ -54,3 +58,10 @@ def updateProfile(email, bio, nickname, workplace, skills, university, school, c
     query = "update profile_details set bio = %s, nickname = %s, workplace = %s, skills = %s, university = %s, school = %s, current_city = %s, hometown = %s, other_places = %s, contact = %s, relationship_status = %s where email = %s"
     result = cursor.execute(query, (profileObject.bio, profileObject.nickname, profileObject.workplace, profileObject.skills, profileObject.university, profileObject.school, profileObject.current_city, profileObject.hometown, profileObject.other_places, profileObject.contact, profileObject.relationship_status, email))
     return result
+
+def getProfileDetails(email):
+    query = "select * from profile_details where email = %s"
+    result = cursor.execute(query, (email))
+    if result == 1:
+        data = cursor.fetchone()
+        return ProfileDetails(data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12])

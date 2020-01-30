@@ -79,7 +79,7 @@
           <div class="form-group">
             <label for="contact">Contact and basic info</label>
             <input type="text" class="form-control mb-2" name="contact" placeholder="Contact Information" id="contact">
-            <select name="relationship_status" class="form-control">
+            <select name="relationship_status" class="form-control" id="dropdown">
               <option value="">Relationship Status</option>
               <option value="single">Single</option>
               <option value="in relationship">In A Relationship</option>
@@ -95,5 +95,13 @@
           </div>
         </form>
       </div>
+      <script>
+        options = document.getElementById("dropdown").options;
+        for(let option of options){
+          if(option.value == "complicated"){
+            option.selected = true
+          }
+        }
+      </script>
 </body>
 </html>
