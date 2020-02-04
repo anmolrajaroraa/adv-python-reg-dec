@@ -21,7 +21,7 @@ def header():
 
 def navbar(firstname,email):
   print(f'''  <nav class="navbar navbar-expand-lg" style="background-color: #009baf; color: white;">
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" href="login.py?firstname={firstname}&email={email}">
             <img src="https://socialhub.io/wp-content/uploads/2016/06/SocialHub-Logo-Color-RGB.png" width="200" height="30" class="d-inline-block align-top" alt="">
           </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,13 +31,13 @@ def navbar(firstname,email):
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#"><i class="fas fa-user"></i> {firstname}</a>
+              <a class="nav-link" href="showProfile.py?firstname={firstname}&email={email}"><i class="fas fa-user"></i> {firstname}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Create</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-users"></i></a>
+                <a class="nav-link" href="friendsList.py?firstname={firstname}&email={email}"><i class="fas fa-users"></i></a>
               </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,7 +46,7 @@ def navbar(firstname,email):
                 <a class="dropdown-item" href="editProfile.py?firstname={firstname}&email={email}">Edit Profile</a>
                 <a class="dropdown-item" href="#">Settings</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Log Out</a>
+                <a class="dropdown-item" href="../index.html">Log Out</a>
               </div>
             </li>
           </ul>
@@ -63,7 +63,7 @@ def error(email, errorMsg):
     <nav class="navbar navbar-light" style="background-color: #009baf;padding-bottom: 0;">
     <div class="row w-100">
         <div class="col-md-3">
-            <a class="navbar-brand" href="#" style="margin-top: 20px;">
+            <a class="navbar-brand" href="../index.html" style="margin-top: 20px;">
                 <img src="https://socialhub.io/wp-content/uploads/2016/06/SocialHub-Logo-Color-RGB.png" width="200" height="30" class="d-inline-block align-top" alt="">
               </a>
         </div>
@@ -181,6 +181,51 @@ def profilePicModal(firstname,email):
       </div>
     </div>
   </div>
+  </div>
+  ''')
+
+def showProfile(userObject, profileObject):
+  print(f'''
+    <div class="container">
+        <div class="card mb-3 mt-3" style="max-width: 100%;">
+          <div class="row no-gutters">
+            <div class="col-md-4 offset-md-1 mt-3">
+              <img src="../images/{profileObject.profile_pic}" class="card-img" alt="...">
+            </div>
+            <div class="col-md-6 offset-md-1">
+              <div class="card-body">
+                <h5 class="card-title">{userObject.firstname} {userObject.lastname}</h5>
+                <p>Email : {userObject.email}</p>
+                <p>Birthday : {userObject.birthday}</p>
+                <p>Gender : {userObject.gender.upper()}</p>
+                <p>Bio : {profileObject.bio}</p>
+                <p>Nickname : {profileObject.nickname}</p>
+                <p>Workplace : {profileObject.workplace}</p>
+                <p>Skills : {profileObject.skills}</p>
+                <p>University : {profileObject.university}</p>
+                <p>School : {profileObject.school}</p>
+                <p>Current City : {profileObject.current_city}</p>
+                <p>Hometown : {profileObject.hometown}</p>
+                <p>Other Places : {profileObject.other_places}</p>
+                <p>Contact : {profileObject.contact}</p>
+                <p>Relationship Status : {profileObject.relationship_status}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  ''')
+
+def createFriendsList():
+  print('''
+  <div class="container">
+    <ul class="list-group list-group-flush">
+  <li class="list-group-item">Cras justo odio</li>
+  <li class="list-group-item">Dapibus ac facilisis in</li>
+  <li class="list-group-item">Morbi leo risus</li>
+  <li class="list-group-item">Porta ac consectetur ac</li>
+  <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
   </div>
   ''')
 

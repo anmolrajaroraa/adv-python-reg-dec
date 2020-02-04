@@ -7,7 +7,7 @@ cursor = connection.cursor()
 class User:
     def __init__(self, firstname, lastname, email, password, birthday, gender):
         self.firstname = firstname
-        self.lastname = lastname
+        self.lastname = lastname if lastname != None else ''
         self.email = email
         self.password = password
         self.birthday = birthday
@@ -67,3 +67,19 @@ def getProfileDetails(email):
     if result == 1:
         data = cursor.fetchone()
         return ProfileDetails(data)
+
+def getUserDetails(email):
+    query = "select firstname, lastname, birthday, gender from users where email = %s"
+    result = cursor.execute(query, (email))
+    if result == 1:
+        data = cursor.fetchone()
+        return User(data[0], data[1], email, None, data[2], data[3])
+
+def getFriendsList():
+    query = "select friend_name from friends where email = %s"
+    result = cursor.execute(query, ("shyam@gmail.com"))
+    if result > 0:
+        data = cursor.fetchall()
+        print(data)
+
+getFriendsList()
