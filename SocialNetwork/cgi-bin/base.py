@@ -50,10 +50,11 @@ def navbar(firstname,email):
               </div>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Find Friends" aria-label="Search">
-            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          <div>
+            <a href="friendsList.py?firstname={firstname}&email={email}&friend=all">
+              <button type="submit" class="btn btn-outline-warning">Find Friends</button>
+            </a>
+          </div>
         </div>
       </nav>
     ''')
@@ -220,12 +221,19 @@ def createFriendsList():
   print('''
   <div class="container">
     <ul class="list-group list-group-flush">
-  <li class="list-group-item">Cras justo odio</li>
-  <li class="list-group-item">Dapibus ac facilisis in</li>
-  <li class="list-group-item">Morbi leo risus</li>
-  <li class="list-group-item">Porta ac consectetur ac</li>
-  <li class="list-group-item">Vestibulum at eros</li>
-  </ul>
+    ''')
+
+def createLi(friend):
+  print(f'<li class="list-group-item">{friend}</li>')
+
+def createFindFriendLi(friend, firstname, email):
+  print(f'''<li class="list-group-item">
+    {friend}
+    <a href="friendsList.py?firstname={firstname}&email={email}&friend={friend}" class="addFriendBtn"><i class="fas fa-user-plus"></i></a>
+    </li>''')
+  
+def endFriendsList():  
+  print('''</ul>
   </div>
   ''')
 

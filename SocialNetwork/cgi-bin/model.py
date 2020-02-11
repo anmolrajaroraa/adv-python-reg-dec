@@ -75,11 +75,24 @@ def getUserDetails(email):
         data = cursor.fetchone()
         return User(data[0], data[1], email, None, data[2], data[3])
 
-def getFriendsList():
+def getFriendsList(email):
     query = "select friend_name from friends where email = %s"
-    result = cursor.execute(query, ("shyam@gmail.com"))
+    result = cursor.execute(query, (email))
     if result > 0:
         data = cursor.fetchall()
-        print(data)
+        # print(data)
+        return data
 
-getFriendsList()
+def getAllFriends(email):
+    query = "select distinct friend_name from friends where friend_name not in (select friend_name from friends where email = %s)"
+    result = cursor.execute(query, (email))
+    if result > 0:
+        data = cursor.fetchall()
+        # print(data)
+        return data
+
+def addFriend(email, friend_name):
+    query = "insert into friends values (%s, %s)"
+    cursor.execute(query, (email, friend_name))
+
+# getAllFriends("shyam@gmail.com")
