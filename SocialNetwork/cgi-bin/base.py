@@ -1,6 +1,7 @@
 #!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
 # print("Content-type: text/html\r\n\r\n")
 
+
 def header():
     print('''
         <!DOCTYPE html>
@@ -19,13 +20,14 @@ def header():
 </head>
 <body>''')
 
-def navbar(firstname,email):
-  print(f'''  <nav class="navbar navbar-expand-lg" style="background-color: #009baf; color: white;">
+
+def navbar(firstname, email):
+    print(f'''  <nav class="navbar navbar-expand-lg" style="background-color: #009baf; color: white;">
         <a class="navbar-brand" href="login.py?firstname={firstname}&email={email}">
             <img src="https://socialhub.io/wp-content/uploads/2016/06/SocialHub-Logo-Color-RGB.png" width="200" height="30" class="d-inline-block align-top" alt="">
           </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler btn-outline-warning" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -34,7 +36,7 @@ def navbar(firstname,email):
               <a class="nav-link" href="showProfile.py?firstname={firstname}&email={email}"><i class="fas fa-user"></i> {firstname}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Create</a>
+              <a class="nav-link" href="createPost.py?firstname={firstname}&email={email}">Create</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="friendsList.py?firstname={firstname}&email={email}"><i class="fas fa-users"></i></a>
@@ -59,8 +61,9 @@ def navbar(firstname,email):
       </nav>
     ''')
 
+
 def error(email, errorMsg):
-  print(f'''
+    print(f'''
     <nav class="navbar navbar-light" style="background-color: #009baf;padding-bottom: 0;">
     <div class="row w-100">
         <div class="col-md-3">
@@ -96,14 +99,15 @@ def error(email, errorMsg):
   <hr>
   ''')
 
-def editProfileForm(firstname,email, profileObject):
-  print(f'''
+
+def editProfileForm(firstname, email, profileObject):
+    print(f'''
           <div class="container">
           <div class="form-group mt-5">
             <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Change Profile Pic</button>
             <span>{profileObject.profile_pic}</span>
           </div>
-        <form action="updateProfile.py" method="POST" enctype="multipart/form-data">
+        <form action="updateProfile.py?update=true" method="POST" enctype="multipart/form-data">
           <input type="hidden" name="firstname" value="{firstname}">
           <input type="hidden" name="email" value="{email}">
           <div class="form-group">
@@ -145,19 +149,21 @@ def editProfileForm(firstname,email, profileObject):
       </div>
   ''')
 
+
 def runScript(relationship_status):
-  print('''
+    print('''
     <script>
         options = document.getElementById("dropdown").options;
         for(let option of options){''')
-  print("if(option.value == '" + relationship_status + "' ) { ")
-  print('''option.selected = true
+    print("if(option.value == '" + relationship_status + "' ) { ")
+    print('''option.selected = true
           }
         }
       </script>''')
 
-def profilePicModal(firstname,email):
-  print(f'''
+
+def profilePicModal(firstname, email):
+    print(f'''
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"   aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -185,8 +191,9 @@ def profilePicModal(firstname,email):
   </div>
   ''')
 
+
 def showProfile(userObject, profileObject):
-  print(f'''
+    print(f'''
     <div class="container">
         <div class="card mb-3 mt-3" style="max-width: 100%;">
           <div class="row no-gutters">
@@ -217,28 +224,188 @@ def showProfile(userObject, profileObject):
       </div>
   ''')
 
+
 def createFriendsList():
-  print('''
+    print('''
   <div class="container">
     <ul class="list-group list-group-flush">
     ''')
 
+
 def createLi(friend):
-  print(f'<li class="list-group-item">{friend}</li>')
+    print(f'<li class="list-group-item">{friend}</li>')
+
 
 def createFindFriendLi(friend, firstname, email):
-  print(f'''<li class="list-group-item">
+    print(f'''<li class="list-group-item">
     {friend}
     <a href="friendsList.py?firstname={firstname}&email={email}&friend={friend}" class="addFriendBtn"><i class="fas fa-user-plus"></i></a>
     </li>''')
-  
-def endFriendsList():  
-  print('''</ul>
+
+
+def endFriendsList():
+    print('''</ul>
+    </div>
+    ''')
+
+
+def createPostForm(firstname, email):
+    print(f'''
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 mt-5">
+                <form action="login.py" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="firstname" value="{firstname}">
+                    <input type="hidden" name="email" value="{email}">
+                    <div class="form-group">
+                        <label for="caption">Caption</label>
+                        <input type="text" class="form-control" id="caption" name="caption" required>
+                        <small class="form-text text-muted">Add some hashtags also !!</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="media">Add Media</label>
+                        <input type="file" class="form-control" id="media" name="media">
+                        <small class="form-text text-muted">Add jpg, png, or mp4 file..</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary"
+                        style="float: right; margin-left: 10px;">Submit</button>
+                    <a href="login.py?firstname={firstname}&email={email}" style="float: right;" class="btn btn-outline-dark">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    ''')
+
+
+def newsFeedStart():
+    print('''
+    <div class="container">
+    <br>
+    <div class="row">
+      <div class="col-md-7">
+        <div class="row">
+    ''')
+
+
+def newsFeedPost():
+    print('''
+          <div class="col-md-12">
+            <div class="card" style="width: 100%; padding: 15px 25px 5px;">
+              <h4 class="card-title" style="margin-bottom: 0; color: #3F9BAF"><i class="fas fa-user"></i> Ram Kumar</h4>
+              <p class="text-muted"><i class="fas fa-history"></i>&nbsp;&nbsp;14 hrs</p>
+              <p class="card-text">
+                Delhi Metro
+                <br>
+                Want a Lyft?
+              </p>
+              <div style="margin: auto;">
+                <img src="../images/boy.jpg" class="card-img-top" alt="...">
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <a href="#" class="btn btn-dark" style="width: 100%;"><i
+                        class="fas fa-thumbs-up"></i>&nbsp;&nbsp;Like&nbsp;&nbsp;<span
+                        class="badge badge-pill badge-light">4</span></a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#" class="btn btn-dark" style="width: 100%;"><i
+                        class="fas fa-comment-alt"></i>&nbsp;&nbsp;Comment&nbsp;&nbsp;<span
+                        class="badge badge-pill badge-light">4</span></a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#" class="btn btn-dark" style="width: 100%;"><i
+                        class="fas fa-share"></i>&nbsp;&nbsp;Share&nbsp;&nbsp;<span
+                        class="badge badge-pill badge-light">4</span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    ''')
+
+
+def newsFeedEnd():
+    print('''        
+        </div>
+      </div>
+      <div class="col-md-4 offset-md-1">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card" style="width: 18rem; text-align: center;">
+              <img src="https://i.udemycdn.com/course/240x135/1879018_95b6.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">NodeJS - The Complete Guide (incl. MVC, REST APIs, GraphQL)</h5>
+                <p class="card-text">Master Node JS, build REST APIs with Node.js, GraphQL APIs, add Authentication, use
+                  MongoDB, SQL & much more!</p>
+                <a href="https://www.udemy.com/course/nodejs-the-complete-guide/" class="btn btn-outline-dark">Go to
+                  course</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="card mt-2" style="width: 18rem; text-align: center;">
+              <img src="https://i.udemycdn.com/course/240x135/857010_8239_2.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Learn Ethical Hacking From Scratch</h5>
+                <p class="card-text">Become an ethical hacker that can hack computer systems like black hat hackers and
+                  secure
+                  them like security experts.</p>
+                <a href="https://www.udemy.com/course/learn-ethical-hacking-from-scratch/"
+                  class="btn btn-outline-dark">Buy
+                  now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="card mt-2" style="width: 18rem; text-align: center;">
+              <img
+                src="https://yt3.ggpht.com/kqNW98UOQclfO6CSZI2l60ss66VMyE1KhN34n2PhTQ_ioeg1X6w5Q7uiJ1gx_My_skPuSL8BLg=w1440-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj"
+                class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Bret Fisher Docker and DevOps</h5>
+                <p class="card-text">Focused on DevOps, containers, Docker, Kubernetes, and cloud, this channel me, Bret
+                  Fisher, and my friends sharing and discussing topics for IT Pro's, Developers, Engineers, and
+                  Sysadmins. Hopefully a bit more fun then what you're used to for "tech videos".</p>
+                <a href="https://www.youtube.com/channel/UC0NErq0RhP51iXx64ZmyVfg/featured"
+                  class="btn btn-outline-dark">Subscribe</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="card mt-2" style="width: 18rem; text-align: center;">
+              <img src="https://i.ytimg.com/vi/FwvgeJn1de8/maxresdefault.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">21 Home Upgrades That You Can DIY for Under $50</h5>
+                <p class="card-text">You don't need much cash to spruce up your property.</p>
+                <a href="https://www.moneytalksnews.com/23-ways-make-your-house-look-awesome-for-50-less/?__cf_chl_captcha_tk__=23855f1a37ee7e1bcf93ec6ac79187cbcd32f2d5-1581520076-0-Af3ZKefmiYB_OPJkVZeTVctYDdccSIvqLy73DhTV3fiBvt8T82zqnGaODYPRBRirZ5Iogj_BrcMvV1DZd9JZezcfhX_8GN_Op5tnGNxDyKPcnr34_1DJ--aoDp20TXXKZkn-qV8QNCP2UGfSPI3lz45vN-m1ghwV80NbIMtsElC9urs7RxbS9IfFzAebvfeTud_QAT5nRiT2Qw4TUQQRs65DuE6ohBgq3ze6jfrOgGY458tgpJIAbkjHkdO4mOgGTvLRS8Vi--F6SiITnm3iL4tCqOhiPNMsJ5PLlGeSTr5dH4QwTxCBeZSFzznDhp28Yd9zf0Y3zCDY-YGF57AKwZVt2WnOhPbGq4LjOSJoc1GjLB3Mh6_zlu6BTQ1foYDARQ"
+                  class="btn btn-outline-dark">Make
+                  your home look great</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="card mt-2" style="width: 18rem; text-align: center;">
+              <img src="http://farm1.static.flickr.com/101/296747958_8c15e91e3f_m.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">7 Essential Tips for Developing Skills</h5>
+                <p class="card-text">Everyone wants to have a fulfilling career. But what do you think you need to have
+                  it? </p>
+                <a href="https://www.lifeoptimizer.org/2008/09/30/developing-skills/" class="btn btn-outline-dark">Here
+                  are seven tips</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
   </div>
-  ''')
+    ''')
+
 
 def footer():
-  print('''
+    print('''
     </body>
     </html>
   ''')

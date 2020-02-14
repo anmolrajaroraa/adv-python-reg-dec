@@ -1,34 +1,44 @@
-nav a{
+nav a {
     color: white;
-} 
-nav a:hover{
-    color:#F8C146;
 }
-.custom-dropdown{
+
+nav a:hover {
+    color: #F8C146;
+}
+
+.custom-dropdown {
     background-color: #3F9BAF;
 }
-.custom-dropdown a{
-    color:white;
+
+.custom-dropdown a {
+    color: white;
 }
-.custom-dropdown div{
+
+.custom-dropdown div {
     border: 1px solid #F8C146;
 }
-.custom-dropdown a:hover{
+
+.custom-dropdown a:hover {
     background-color: #F8C146;
     color: white;
 }
-#error-msg{
+
+#error-msg {
     padding-top: 15px;
 }
-.addFriendBtn{
+
+.addFriendBtn {
     color: black;
-} 
-.addFriendBtn i{
-    float: right;
-} 
-.addFriendBtn:hover{
-    color:#F8C146;
 }
-ul{
+
+.addFriendBtn i {
+    float: right;
+}
+
+.addFriendBtn:hover {
+    color: #F8C146;
+}
+
+ul {
     width: 50%;
 }

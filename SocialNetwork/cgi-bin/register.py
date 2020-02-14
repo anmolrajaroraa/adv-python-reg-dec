@@ -1,7 +1,10 @@
 #!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
 # print("Content-type: text/html\r\n\r\n")
 
-import cgi, model, base, pymysql
+import cgi
+import model
+import base
+import pymysql
 
 fieldStorage = cgi.FieldStorage()
 firstname = fieldStorage.getvalue("firstname")
@@ -21,11 +24,15 @@ gender = fieldStorage.getvalue("gender")
 # ''')
 try:
     base.header()
-    result = model.register(firstname, lastname, email, password, birthday, gender)
+    result = model.register(firstname, lastname, email,
+                            password, birthday, gender)
     if result == 1:
         profileCreated = model.createProfile(email)
         if profileCreated:
             base.navbar(firstname, email)
+            base.newsFeedStart()
+            base.newsFeedPost()
+            base.newsFeedEnd()
 except pymysql.IntegrityError:
     base.error(email, "Email Id Already Exists !")
 finally:

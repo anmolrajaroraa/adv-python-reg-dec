@@ -1,6 +1,9 @@
 #!/Library/Frameworks/Python.framework/Versions/3.7/bin/python3
 
-import cgi, base, model
+import cgi
+import base
+import model
+
 fieldStorage = cgi.FieldStorage()
 firstname = fieldStorage.getvalue("firstname")
 email = fieldStorage.getvalue("email")
