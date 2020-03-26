@@ -16,6 +16,7 @@ base.navbar(firstname, email)
 
 if profile_pic != None:
     profile_pic = fieldStorage['profile_pic']
+    print(profile_pic)
     model.updateProfilePic(email, profile_pic)
 
 if updateFlag == "true":

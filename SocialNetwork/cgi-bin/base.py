@@ -12,7 +12,7 @@ def header():
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SocialHub</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -287,36 +287,37 @@ def newsFeedStart():
     ''')
 
 
-def newsFeedPost():
-    print('''
-          <div class="col-md-12">
+def newsFeedPost(post):
+  # firstname, post_time, caption, media_link, likes, comments, shares
+    print(f'''
+          <div class="col-md-12 mb-5">
             <div class="card" style="width: 100%; padding: 15px 25px 5px;">
-              <h4 class="card-title" style="margin-bottom: 0; color: #3F9BAF"><i class="fas fa-user"></i> Ram Kumar</h4>
-              <p class="text-muted"><i class="fas fa-history"></i>&nbsp;&nbsp;14 hrs</p>
+              <h4 class="card-title" style="margin-bottom: 0; color: #3F9BAF"><i class="fas fa-user"></i>&nbsp;{post[0]}</h4>
+              <p class="text-muted"><i class="fas fa-history"></i>&nbsp;&nbsp;{post[1]}</p>
               <p class="card-text">
-                Delhi Metro
-                <br>
-                Want a Lyft?
+                <pre>
+                  {post[2]}
+                </pre>
               </p>
               <div style="margin: auto;">
-                <img src="../images/boy.jpg" class="card-img-top" alt="...">
+                <img src="../images/{post[3]}" class="card-img-top" alt="...">
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-4">
                     <a href="#" class="btn btn-dark" style="width: 100%;"><i
                         class="fas fa-thumbs-up"></i>&nbsp;&nbsp;Like&nbsp;&nbsp;<span
-                        class="badge badge-pill badge-light">4</span></a>
+                        class="badge badge-pill badge-light">{post[4]}</span></a>
                   </div>
                   <div class="col-md-4">
                     <a href="#" class="btn btn-dark" style="width: 100%;"><i
                         class="fas fa-comment-alt"></i>&nbsp;&nbsp;Comment&nbsp;&nbsp;<span
-                        class="badge badge-pill badge-light">4</span></a>
+                        class="badge badge-pill badge-light">{post[5]}</span></a>
                   </div>
                   <div class="col-md-4">
                     <a href="#" class="btn btn-dark" style="width: 100%;"><i
                         class="fas fa-share"></i>&nbsp;&nbsp;Share&nbsp;&nbsp;<span
-                        class="badge badge-pill badge-light">4</span></a>
+                        class="badge badge-pill badge-light">{post[6]}</span></a>
                   </div>
                 </div>
               </div>

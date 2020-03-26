@@ -120,3 +120,23 @@ def savePost(email, caption, media):
         open(f'images/{media_name}', 'wb').write(media.file.read())
     query = "insert into posts (email, caption, media_link, likes, comments, shares) values (%s, %s, %s, 0, 0, 0)"
     cursor.execute(query, (email, caption, media_name))
+
+
+def getPosts(firstname, email):
+    query = "select firstname, post_time, caption, media_link, likes, comments, shares from users INNER JOIN posts on users.email = posts.email where users.email in (select email from users where firstname in (select friend_name from friends where email = %s) or firstname = %s);"
+    cursor.execute(query, (email, firstname))
+    return cursor.fetchall()
+
+
+def updateLike(post_id):
+    query = f"select likes from posts where post_id = {post_id}"
+    result = cursor.execute(query)
+    if result:
+        likes = cursor.fetchone()[0]
+        likes += 1
+        query = f"update posts set likes = {likes} where post_id = {post_id}"
+        result = cursor.execute(query)
+        if result:
+            cursor.execute(
+                f"select likes from posts where post_id = {post_id}")
+            return cursor.fetchone()[0]
