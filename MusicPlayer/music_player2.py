@@ -10,12 +10,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 import os
 import pygame
+import random
 pygame.mixer.init()
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         self.path = "/Users/anmolrajarora/Documents/adv-python-reg-dec/MusicPlayer/"
+        self.isShuffle = False
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(810, 601)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -52,6 +55,8 @@ class Ui_MainWindow(object):
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, item)
+        self.tableWidget.setColumnWidth(0, 250)
+        self.tableWidget.setColumnWidth(1, 80)
         self.label_2 = QtWidgets.QLabel(self.frame_2)
         self.label_2.setGeometry(QtCore.QRect(130, 0, 251, 31))
         self.label_2.setStyleSheet("font: 75 24pt \"Rosewood Std\";\n"
@@ -175,14 +180,14 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "Featured Songs"))
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Song Name"))
+        item.setText(_translate("MainWindow", "Very Long Song Name"))
         item = self.tableWidget.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "Actions"))
         self.label_2.setText(_translate("MainWindow", "Playlist"))
         self.label_3.setText(_translate("MainWindow", "00:00"))
         self.label_4.setText(_translate("MainWindow", "00:00"))
         self.pushButton_5.setText(_translate("MainWindow", "Search"))
-        self.lineEdit.setText(_translate("MainWindow", " Search a song .."))
+        self.lineEdit.setPlaceholderText("Search a song...")
         self.pushButton_6.setText(_translate("MainWindow", "Continue >>>"))
         self.label_6.setText(_translate(
             "MainWindow", "Welcome to Xomp Player"))
@@ -199,6 +204,9 @@ class Ui_MainWindow(object):
             _translate("MainWindow", "Save Playlist"))
         self.actionQuit_3.setText(_translate("MainWindow", "Quit"))
         self.pushButton_6.clicked.connect(self.frame_4.hide)
+        self.pushButton.clicked.connect(self.toggleShuffle)
+        self.pushButton_2.clicked.connect(self.previousSong)
+        self.pushButton_3.clicked.connect(self.nextSong)
         self.songs = os.listdir(
             "/Users/anmolrajarora/Documents/adv-python-reg-dec/MusicPlayer/songs")
         # print(self.songs)
@@ -206,6 +214,15 @@ class Ui_MainWindow(object):
             item = QtWidgets.QListWidgetItem()
             self.listWidget.addItem(item)
             self.listWidget.item(i).setText(self.songs[i])
+
+        item = QtWidgets.QTableWidgetItem()
+        item.setText("Raat Di Gedi - Diljit Dosanjh (DjPunjab.Com).mp3")
+        item2 = QtWidgets.QTableWidgetItem()
+        item2.setText("delete btn")
+        self.rowCount = self.tableWidget.rowCount()
+        self.tableWidget.insertRow(self.rowCount)
+        self.tableWidget.setItem(self.rowCount, 0, item)
+        self.tableWidget.setItem(self.rowCount, 1, item2)
 
         self.listWidget.itemClicked.connect(self.selectSong)
         self.pushButton_4.clicked.connect(self.playSong)
@@ -219,6 +236,40 @@ class Ui_MainWindow(object):
         pygame.mixer.music.play()
         self.label_7.setText("Currently playing : " + self.selectedSong)
         print("Song played..")
+
+    def nextSong(self):
+        if self.isShuffle:
+            index = random.randint(0, len(self.songs) - 1)
+        else:
+            index = self.songs.index(self.selectedSong)
+            index += 1
+            if index == len(self.songs):
+                index = 0
+        self.selectedSong = self.songs[index]
+        print(self.selectedSong)
+        self.playSong()
+
+    def previousSong(self):
+        if self.isShuffle:
+            index = random.randint(0, len(self.songs) - 1)
+        else:
+            index = self.songs.index(self.selectedSong)
+            index -= 1
+            if index == -1:
+                index = len(self.songs) - 1
+        self.selectedSong = self.songs[index]
+        print(self.selectedSong)
+        self.playSong()
+
+    def toggleShuffle(self):
+        self.isShuffle = not self.isShuffle
+        if self.isShuffle:
+            self.pushButton.setStyleSheet(
+                f"background-image : url({self.path + 'assets/shuffle_btn.png'}); background-color : blue;")
+            self.nextSong()
+        else:
+            self.pushButton.setStyleSheet(
+                f"background-image : url({self.path + 'assets/shuffle_btn.png'}); background-color : white;")
 
 
 if __name__ == "__main__":
