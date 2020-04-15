@@ -11,6 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 import os
 import pygame
 import random
+import mutagen
+import threading
+import time
 pygame.mixer.init()
 
 
@@ -214,6 +217,12 @@ class Ui_MainWindow(object):
             item = QtWidgets.QListWidgetItem()
             self.listWidget.addItem(item)
             self.listWidget.item(i).setText(self.songs[i])
+            self.listWidget.setStyleSheet(
+                "font: 75 15pt \"Cochin\";\n")
+            item = QtWidgets.QListWidgetItem()
+            self.listWidget_2.addItem(item)
+            self.listWidget_2.item(i).setIcon(
+                QtGui.QIcon(f"{self.path}assets/play_btn.png"))
 
         item = QtWidgets.QTableWidgetItem()
         item.setText("Raat Di Gedi - Diljit Dosanjh (DjPunjab.Com).mp3")
@@ -225,7 +234,24 @@ class Ui_MainWindow(object):
         self.tableWidget.setItem(self.rowCount, 1, item2)
 
         self.listWidget.itemClicked.connect(self.selectSong)
+        self.listWidget_2.itemClicked.connect(self.addToPlaylist)
+        self.tableWidget.itemClicked.connect(self.printItem)
         self.pushButton_4.clicked.connect(self.playSong)
+
+        self.horizontalSlider.sliderPressed.connect(self.changeValue)
+        self.horizontalSlider.setMinimum(0)
+        self.horizontalSlider.setDisabled(True)
+        self.t = threading.Thread(target=self.changeSliderPosition)
+        self.t.start()
+
+    def printItem(self, item):
+        print(item)
+        print(item.text())
+
+    def addToPlaylist(self, item):
+        for i in range(self.listWidget_2.count()):
+            if item == self.listWidget_2.item(i):
+                print(i)
 
     def selectSong(self, item):
         self.selectedSong = item.text()
@@ -235,6 +261,10 @@ class Ui_MainWindow(object):
         pygame.mixer.music.load(self.path + "songs/" + self.selectedSong)
         pygame.mixer.music.play()
         self.label_7.setText("Currently playing : " + self.selectedSong)
+        self.horizontalSlider.setDisabled(False)
+        songFile = mutagen.File(self.path + "songs/" + self.selectedSong)
+        songLength = songFile.info.length
+        self.horizontalSlider.setMaximum(songLength)
         print("Song played..")
 
     def nextSong(self):
@@ -270,6 +300,22 @@ class Ui_MainWindow(object):
         else:
             self.pushButton.setStyleSheet(
                 f"background-image : url({self.path + 'assets/shuffle_btn.png'}); background-color : white;")
+
+    def changeValue(self):
+        print("Position changed")
+        currentValue = self.horizontalSlider.value()
+        print(currentValue)
+        pygame.mixer.music.set_pos(currentValue)
+
+    def changeSliderPosition(self):
+        while True:
+            print("Slider Position changed")
+            songPos = pygame.mixer.music.get_pos()
+            print(songPos/1000)
+            seconds = songPos / 1000
+            time.sleep(1)
+            self.horizontalSlider.setValue(seconds)
+            self.label_3.setText(f"00:{int(seconds)}")
 
 
 if __name__ == "__main__":
