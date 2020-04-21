@@ -210,13 +210,15 @@ class Ui_MainWindow(object):
         self.pushButton.clicked.connect(self.toggleShuffle)
         self.pushButton_2.clicked.connect(self.previousSong)
         self.pushButton_3.clicked.connect(self.nextSong)
-        self.songs = os.listdir(
+        self.featuredSongs = os.listdir(
             "/Users/anmolrajarora/Documents/adv-python-reg-dec/MusicPlayer/songs")
+        self.userPlaylist = [
+            "Raat Di Gedi - Diljit Dosanjh (DjPunjab.Com).mp3", "Aankh_Marey.mp3"]
         # print(self.songs)
-        for i in range(len(self.songs)):
+        for i in range(len(self.featuredSongs)):
             item = QtWidgets.QListWidgetItem()
             self.listWidget.addItem(item)
-            self.listWidget.item(i).setText(self.songs[i])
+            self.listWidget.item(i).setText(self.featuredSongs[i])
             self.listWidget.setStyleSheet(
                 "font: 75 15pt \"Cochin\";\n")
             item = QtWidgets.QListWidgetItem()
@@ -233,9 +235,20 @@ class Ui_MainWindow(object):
         self.tableWidget.setItem(self.rowCount, 0, item)
         self.tableWidget.setItem(self.rowCount, 1, item2)
 
-        self.listWidget.itemClicked.connect(self.selectSong)
+        item = QtWidgets.QTableWidgetItem()
+        item.setText("Aankh_Marey.mp3")
+        item2 = QtWidgets.QTableWidgetItem()
+        item2.setText("delete btn")
+        self.rowCount = self.tableWidget.rowCount()
+        self.tableWidget.insertRow(self.rowCount)
+        self.tableWidget.setItem(self.rowCount, 0, item)
+        self.tableWidget.setItem(self.rowCount, 1, item2)
+
+        # self.listWidget.itemClicked.connect(self.selectSong)
+        self.listWidget.itemClicked.connect(self.selectFeaturedSongs)
         self.listWidget_2.itemClicked.connect(self.addToPlaylist)
-        self.tableWidget.itemClicked.connect(self.printItem)
+        # self.tableWidget.itemClicked.connect(self.printItem)
+        self.tableWidget.itemClicked.connect(self.selectUserPlaylist)
         self.pushButton_4.clicked.connect(self.playSong)
 
         self.horizontalSlider.sliderPressed.connect(self.changeValue)
@@ -244,9 +257,20 @@ class Ui_MainWindow(object):
         self.t = threading.Thread(target=self.changeSliderPosition)
         self.t.start()
 
+    def selectUserPlaylist(self, item):
+        self.selectedPlaylist = "user playlist"
+        self.selectSong(item)
+
+    def selectFeaturedSongs(self, item):
+        self.selectedPlaylist = "featured songs"
+        self.selectSong(item)
+
     def printItem(self, item):
         print(item)
         print(item.text())
+        for i in range(self.tableWidget.rowCount()):
+            if self.tableWidget.item(i, 1) == item:
+                print(i, "item found")
 
     def addToPlaylist(self, item):
         for i in range(self.listWidget_2.count()):
@@ -268,6 +292,10 @@ class Ui_MainWindow(object):
         print("Song played..")
 
     def nextSong(self):
+        if self.selectedPlaylist == "user playlist":
+            self.songs = self.userPlaylist
+        else:
+            self.songs = self.featuredSongs
         if self.isShuffle:
             index = random.randint(0, len(self.songs) - 1)
         else:
